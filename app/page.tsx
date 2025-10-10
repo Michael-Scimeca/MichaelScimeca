@@ -15,6 +15,13 @@ export default function Home() {
     const [outerStars, setOuterStars] = useState<{ id: number; x: string; y: string; videoIndex: number }[]>([]);
     const [isClosing, setIsClosing] = useState(false);
 
+    // Set click sound volume
+    useEffect(() => {
+        if (clickAudioRef.current) {
+            clickAudioRef.current.volume = 0.1; // 30% volume
+        }
+    }, []);
+
     useEffect(() => {
         // Function to check if current time is between 8:30 AM and 1:00 AM AND it's a weekday
         const checkAvailability = () => {
@@ -224,7 +231,7 @@ export default function Home() {
             </audio> */}
             
             {/* Click Sound */}
-            <audio ref={clickAudioRef}>
+            <audio ref={clickAudioRef} preload="auto">
                 <source src="/sound/click.mp3" type="audio/mpeg" />
             </audio>
 
@@ -347,6 +354,7 @@ export default function Home() {
                                         style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(2deg)', zIndex: 12 }}
                                         onClick={(e) => handleVideoClick('/video/patreon.mp4', e)}
                                         onMouseEnter={handleAudioStart}
+                                        data-video="0"
                                     >
                                         <video
                                             src="/video/patreon.mp4"
@@ -403,6 +411,7 @@ export default function Home() {
                                         style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(0deg)', zIndex: 12 }}
                                         onClick={(e) => handleVideoClick('/video/twix.mp4', e)}
                                         onMouseEnter={handleAudioStart}
+                                        data-video="1"
                                     >
                                         <video
                                             src="/video/twix.mp4"
@@ -459,6 +468,7 @@ export default function Home() {
                                         style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(-2deg)', zIndex: 12 }}
                                         onClick={(e) => handleVideoClick('/video/kovitz.mp4', e)}
                                         onMouseEnter={handleAudioStart}
+                                        data-video="2"
                                     >
                                         <video
                                             src="/video/kovitz.mp4"
@@ -535,6 +545,19 @@ export default function Home() {
                                 zIndex: 1001,
                             } as React.CSSProperties}
                         >
+                            {/* Close Button */}
+                            <button
+                                onClick={handleCloseModal}
+                                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-[1002] group"
+                                aria-label="Close modal"
+                            >
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Press ESC</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                            </button>
                     
                             <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full bg-white flex flex-col">
                                 <div className="flex-1 bg-black">

@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-site-verification-code",
+    google: "G-K1EFNGT352",
   },
 };
 
@@ -90,7 +90,7 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-K1EFNGT352');
+          gtag('config', 'G-3X3QCH0C86');
         `}
       </Script>
       <body className={`${inter.variable} ${lora.variable} font-sans`}>{children}</body>
