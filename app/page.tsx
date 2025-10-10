@@ -7,6 +7,7 @@ export default function Home() {
     const [isAvailable, setIsAvailable] = useState(false);
     const [isDaytime, setIsDaytime] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isMomentReady, setIsMomentReady] = useState(false);
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
     const [clickPosition, setClickPosition] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -49,6 +50,11 @@ export default function Home() {
 
             // Mark as loaded after first check
             setIsLoaded(true);
+            
+            // Mark moment as ready after first check
+            if (!isMomentReady) {
+                setIsMomentReady(true);
+            }
         };
 
         // Check immediately
@@ -58,7 +64,7 @@ export default function Home() {
         const interval = setInterval(checkAvailability, 60000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [isMomentReady]);
 
     // ESC key to close modal and prevent body scroll
     useEffect(() => {
@@ -275,7 +281,7 @@ export default function Home() {
             <div className="mx-auto px-6 py-7 relative z-10" style={{ maxWidth: '1440px' }}>
                 {/* Profile Section */}
                 <div className="flex flex-col items-center mb-8">
-                    <div className="bg-white rounded-full p-[5px]">
+                    <div className="bg-white rounded-full p-[5px] fade-in-up">
                         <div className="rounded-full bg-slate-700 overflow-hidden" style={{ width: '150px', height: '150px' }}>
                             <img
                                 src="/profile.jpg"
@@ -288,21 +294,21 @@ export default function Home() {
                             />
                         </div>
                     </div>
-                    <div className="bg-white border border-gray-200 px-6 py-2 rounded-full shadow-sm -mt-3">
+                    <div className="bg-white border border-gray-200 px-6 py-2 rounded-full shadow-sm -mt-3 fade-in-up-delay-1">
                         <span className="text-sm font-medium text-gray-900">Michael Scimeca</span>
                     </div>
                 </div> 
 
                 {/* Main Heading */}
-                <h1 className="font-regular text-center mb-8 leading-tight" style={{ fontSize: 'clamp(32px, calc(32px + (61 - 32) * ((100vw - 360px) / (1440 - 360))), 61px)' }}>
+                <h1 className="font-regular text-center mb-8 leading-tight fade-in-up-delay-2" style={{ fontSize: 'clamp(32px, calc(32px + (61 - 32) * ((100vw - 360px) / (1440 - 360))), 61px)' }}>
                 <div>Full-Stack Web Developer & </div><div>AI Automation Specialist</div>
                 </h1>
-                <div className="!flex justify-center items-center gap-4 text-[#00000080] mb-8">
+                <div className="!flex justify-center items-center gap-4 text-[#00000080] mb-8 fade-in-up-delay-3">
                     <p className="max-w-[70ch] text-center leading-relaxed">I help startups and brands create beautiful, high-performing digital products — blending WordPress, HTML, CSS, JavaScript, Next.js, and AI automation to craft seamless, intelligent web experiences that merge creativity, technology, and strategy for lasting impact.</p>
                 </div>
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap justify-center gap-4 mb-10">
-                    <div className="bg-white rounded-full shadow-lg p-1 transition-all duration-500 hover:translate-y-[1px] hover:shadow-[0_0px_1px_rgba(0,0,0,0.2)]" style={{ willChange: 'transform' }}>
+                    <div className={`bg-white rounded-full shadow-lg p-1 transition-all duration-500 hover:translate-y-[1px] hover:shadow-[0_0px_1px_rgba(0,0,0,0.2)] ${isMomentReady ? 'fade-in-up-delay-4' : 'opacity-0'}`} style={{ willChange: 'transform' }}>
                         <a
                             href={`mailto:mikeyscimeca@gmail.com?subject=${encodeURIComponent(emailSubject)}`}
                             className="text-white px-6 py-3 rounded-full font-large transition-colors flex items-center gap-2 email-button"
@@ -331,7 +337,7 @@ export default function Home() {
                         href="https://www.linkedin.com/in/mikey-scimeca/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white text-gray-900 px-8 py-4 rounded-full font-medium border border-gray-300 hover:bg-gray-50 transition-all flex items-center gap-2 duration-500  shadow-lg hover:translate-y-[1px] hover:shadow-[0_0px_1px_rgba(0,0,0,0.2)]"
+                        className={`bg-white text-gray-900 px-8 py-4 rounded-full font-medium border border-gray-300 hover:bg-gray-50 transition-all flex items-center gap-2 duration-500  shadow-lg hover:translate-y-[1px] hover:shadow-[0_0px_1px_rgba(0,0,0,0.2)] ${isMomentReady ? 'fade-in-up-delay-5' : 'opacity-0'}`}
                         style={{ willChange: 'transform' }}
                     >
                         <svg className="w-5 h-5" fill="#0A66C2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -346,9 +352,9 @@ export default function Home() {
                     <div className="wrap-i leading-tight text-center space-y-4">
            
                     
-                                <span>From</span>
-                                <span>Patreon</span>
-                                <div className="inline-block relative" style={{ left: '-10px', zIndex: 12 }}>
+                                <span className="fade-in-up-delay-6">From</span>
+                                <span className="fade-in-up-delay-7">Patreon</span>
+                                <div className="inline-block relative fade-in-up-delay-8" style={{ left: '-10px', zIndex: 12 }}>
                                     <div 
                                         className="video-thumbnail position-relative inline-block rounded-[10px] overflow-hidden shadow-xl relative video-shadow cursor-pointer hover:opacity-90 transition-opacity" 
                                         style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(2deg)', zIndex: 12 }}
@@ -401,11 +407,11 @@ export default function Home() {
                                 </div>
                           
 
-                                <span>To</span>
-                                <span>Twix</span>
-                                <span>NFT</span>
+                                <span className="fade-in-up-delay-9">To</span>
+                                <span className="fade-in-up-delay-10">Twix</span>
+                                <span className="fade-in-up-delay-11">NFT</span>
                                 
-                                <div className="inline-block relative" style={{ left: '-10px', zIndex: 12 }}>
+                                <div className="inline-block relative fade-in-up-delay-12" style={{ left: '-10px', zIndex: 12 }}>
                                     <div 
                                         className="video-thumbnail inline-block rounded-[10px] overflow-hidden relative video-shadow cursor-pointer hover:opacity-90 transition-opacity " 
                                         style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(0deg)', zIndex: 12 }}
@@ -458,11 +464,11 @@ export default function Home() {
                                 </div>
                              
                             
-                                <span>&</span>
-                                <span>Wealth</span>
-                                <span>Management</span>
-                                <span>Kovitz</span>
-                                <div className="inline-block relative" style={{ left: '-10px', zIndex: 12 }}>
+                                <span className="fade-in-up-delay-13">&</span>
+                                <span className="fade-in-up-delay-14">Wealth</span>
+                                <span className="fade-in-up-delay-15">Management</span>
+                                <span className="fade-in-up-delay-16">Kovitz</span>
+                                <div className="inline-block relative fade-in-up-delay-17" style={{ left: '-10px', zIndex: 12 }}>
                                     <div 
                                         className="video-thumbnail inline-block rounded-[10px] overflow-hidden relative video-shadow cursor-pointer hover:opacity-90 transition-opacity" 
                                         style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(-2deg)', zIndex: 12 }}
@@ -517,7 +523,7 @@ export default function Home() {
 
                         </div>
                     </div>
-                    <footer className="text-center">
+                    <footer className="text-center fade-in-up-delay-18">
                     <p className="text-gray-600 text-sm">
                         Michael Scimeca. All Rights Reserved.
                     </p>
