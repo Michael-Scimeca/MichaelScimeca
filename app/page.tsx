@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
+import Image from 'next/image';
 
 export default function Home() {
     const [isAvailable, setIsAvailable] = useState(false);
@@ -15,6 +16,7 @@ export default function Home() {
     const [stars, setStars] = useState<{ id: number; x: string; y: string; videoIndex: number }[]>([]);
     const [outerStars, setOuterStars] = useState<{ id: number; x: string; y: string; videoIndex: number }[]>([]);
     const [isClosing, setIsClosing] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     // Background colors array
     const backgroundColors = [
@@ -359,15 +361,18 @@ export default function Home() {
                 <header className="flex flex-col items-start mb-8">
                     <div id="">
                         <div className="rounded-full  bg-slate-700 overflow-hidden" style={{ width: '150px', height: '150px' }}>
-                            <img
-                                src="/profile.jpg"
-                                alt="Michael Scimeca"
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                    e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white text-4xl font-bold">MS</div>';
-                                }}
-                            />
+                            {imageError ? (
+                                <div className="w-full h-full flex items-center justify-center text-white text-4xl font-bold">MS</div>
+                            ) : (
+                                <Image
+                                    src="/profile.jpg"
+                                    alt="Michael Scimeca"
+                                    width={150}
+                                    height={150}
+                                    className="w-full h-full object-cover"
+                                    onError={() => setImageError(true)}
+                                />
+                            )}
                         </div>
                     </div>
                    
@@ -375,10 +380,10 @@ export default function Home() {
 
                 {/* Main Heading */}
                 <h1 className="font-regular mb-4 leading-tight" style={{ fontSize: 'clamp(26px, calc(26px + (61 - 26) * ((100vw - 360px) / (1440 - 360))), 61px)', color: 'rgb(149, 156, 173)' }}>
-                <div>Hi, I'm Mikey — Web Developer & </div><div>AI Automation Specialist</div>
+                <div>Hi, I&apos;m Mikey — Web Developer & </div><div>AI Automation Specialist</div>
                 </h1>
                 <div className="!flex gap-4 mb-8">
-                    <p className="max-w-[70ch]"  style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.1' }}>For the past 15 years, I've had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
+                    <p className="max-w-[70ch]"  style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.1' }}>For the past 15 years, I&apos;ve had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
                 </div>
                 {/* CTA Buttons */}
                 <nav className="flex flex-wrap items-start gap-4 mb-10" aria-label="Contact and social links">
