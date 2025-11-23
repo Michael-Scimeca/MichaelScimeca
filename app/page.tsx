@@ -16,6 +16,15 @@ export default function Home() {
     const [outerStars, setOuterStars] = useState<{ id: number; x: string; y: string; videoIndex: number }[]>([]);
     const [isClosing, setIsClosing] = useState(false);
 
+    // Background colors array
+    const backgroundColors = [
+        "#0F172A", // Deep Navy
+        "#1E293B", // Slate Blue
+        "#000000", // Black
+        "#204d96", // Dark Blue
+        "#111819"  // Dark Gray
+    ];
+
     // Set click sound volume
     useEffect(() => {
         if (clickAudioRef.current) {
@@ -230,7 +239,7 @@ export default function Home() {
     };
 
     return (
-        <main className="min-h-screen relative" style={{ backgroundColor: 'rgb(229, 229, 229)' }}>
+        <main className="min-h-screen relative" >
             {/* Background Sound */}
             {/* <audio ref={audioRef} loop>
                 <source src="/sound/bg-sound.mp3" type="audio/mpeg" />
@@ -272,17 +281,84 @@ export default function Home() {
                         "sameAs": [
                             "https://www.linkedin.com/in/mikey-scimeca/"
                         ],
-                        "email": "mikeyscimeca@gmail.com"
+                        "email": "mikeyscimeca@gmail.com",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressCountry": "US"
+                        }
+                    })
+                }}
+            />
+
+            {/* Portfolio Projects JSON-LD */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify([
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "CreativeWork",
+                            "name": "Patreon Trick-or-True Crime Campaign",
+                            "description": "Interactive Halloween microsite featuring immersive Lottie animations and horizontal scrolling for Patreon's true crime content celebration.",
+                            "creator": {
+                                "@type": "Person",
+                                "name": "Michael Scimeca"
+                            },
+                            "datePublished": "2021-10-31",
+                            "keywords": "web development, interactive design, Lottie animations, Patreon"
+                        },
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "CreativeWork",
+                            "name": "Twix NFT Campaign",
+                            "description": "Digital art and NFT campaign for Mars Inc. featuring TWIX's first-ever NFT drop with artist YEAHYEAHCHLOE, hosted on MakersPlace.",
+                            "creator": {
+                                "@type": "Person",
+                                "name": "Michael Scimeca"
+                            },
+                            "keywords": "NFT, blockchain, web3, digital art, Twix, Mars Inc"
+                        },
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "CreativeWork",
+                            "name": "Kovitz Wealth Management Website",
+                            "description": "Modern wealth management website built with HTML, Sass, JavaScript, Vue.js, and Prismic, featuring drone footage and custom illustrations.",
+                            "creator": {
+                                "@type": "Person",
+                                "name": "Michael Scimeca"
+                            },
+                            "keywords": "Vue.js, Prismic, financial services, web design, Sass"
+                        }
+                    ])
+                }}
+            />
+
+            {/* BreadcrumbList Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://michaelscimeca.com"
+                            }
+                        ]
                     })
                 }}
             />
 
             {/* Hero Section */}
-            <div className="mx-auto px-6 py-7 relative z-10" style={{ maxWidth: '1440px' }}>
+            <div className="relative z-10" style={{  maxWidth: '1440px', margin: '0 auto' }}>
+            <div className="body-content my-8 mx-6 md:my-12 md:mx-12">
                 {/* Profile Section */}
-                <div className="flex flex-col items-center mb-8">
-                    <div className="bg-white rounded-full p-[5px] fade-in-up">
-                        <div className="rounded-full bg-slate-700 overflow-hidden" style={{ width: '150px', height: '150px' }}>
+                <header className="flex flex-col items-start mb-8">
+                    <div id="">
+                        <div className="rounded-full  bg-slate-700 overflow-hidden" style={{ width: '150px', height: '150px' }}>
                             <img
                                 src="/profile.jpg"
                                 alt="Michael Scimeca"
@@ -294,244 +370,98 @@ export default function Home() {
                             />
                         </div>
                     </div>
-                    <div className="bg-white border border-gray-200 px-6 py-2 rounded-full shadow-sm -mt-3 fade-in-up-delay-1">
-                        <span className="text-sm font-medium text-gray-900">Michael Scimeca</span>
-                    </div>
-                </div> 
+                   
+                </header> 
 
                 {/* Main Heading */}
-                <h1 className="font-regular text-center mb-8 leading-tight fade-in-up-delay-2" style={{ fontSize: 'clamp(32px, calc(32px + (61 - 32) * ((100vw - 360px) / (1440 - 360))), 61px)' }}>
-                <div>Full-Stack Web Developer & </div><div>AI Automation Specialist</div>
+                <h1 className="font-regular mb-4 leading-tight" style={{ fontSize: 'clamp(26px, calc(26px + (61 - 26) * ((100vw - 360px) / (1440 - 360))), 61px)', color: 'rgb(149, 156, 173)' }}>
+                <div>Hi, I'm Mikey — Web Developer & </div><div>AI Automation Specialist</div>
                 </h1>
-                <div className="!flex justify-center items-center gap-4 text-[#00000080] mb-8 fade-in-up-delay-3">
-                    <p className="max-w-[70ch] text-center leading-relaxed">I help startups and brands create beautiful, high-performing digital products — blending WordPress, HTML, CSS, JavaScript, Next.js, and AI automation to craft seamless, intelligent web experiences that merge creativity, technology, and strategy for lasting impact.</p>
+                <div className="!flex gap-4 mb-8">
+                    <p className="max-w-[70ch]"  style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.1' }}>For the past 15 years, I've had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
                 </div>
                 {/* CTA Buttons */}
-                <div className="flex flex-wrap justify-center gap-4 mb-10">
-                    <div className={`bg-white rounded-full shadow-lg p-1 transition-all duration-500 hover:translate-y-[1px] hover:shadow-[0_0px_1px_rgba(0,0,0,0.2)] ${isMomentReady ? 'fade-in-up-delay-4' : 'opacity-0'}`} style={{ willChange: 'transform' }}>
-                        <a
-                            href={`mailto:mikeyscimeca@gmail.com?subject=${encodeURIComponent(emailSubject)}`}
-                            className="text-white px-6 py-3 rounded-full font-large transition-colors flex items-center gap-2 email-button"
-                            style={{ backgroundColor: 'rgb(10, 102, 194)' }}
-                        >
-                      
-                            {isDaytime ? (
-                                <div className="flex items-center justify-center relative" style={{ width: '35px', height: '35px' }}>
-                                    <img src="/image/sun.png" alt="Sun" className="sun-rotate" style={{ width: '25px', height: '25px' }}></img>
-                                </div>
-                            ) : (
-                                <div className="flex items-center justify-center relative" style={{ width: '35px', height: '35px' }}>
-                                    <img src="/image/moon.png" alt="Moon" style={{ width: '25px', height: '25px' }}></img>
-                                    <span className="sparkle-dot" style={{ top: '3px', left: '-6px', animationDelay: '0s', animationDuration: '3.5s' }}></span>
-                                    <span className="sparkle-dot" style={{ top: '14px', left: '19px', animationDelay: '0.3s', animationDuration: '4.2s' }}></span>
-                                    <span className="sparkle-dot" style={{ top: '27px', left: '4px', animationDelay: '0.7s', animationDuration: '3.0s' }}></span>
-                                    <span className="sparkle-dot" style={{ top: '6px', left: '22px', animationDelay: '1.1s', animationDuration: '4.5s' }}></span>
-                                    <span className="sparkle-dot" style={{ top: '22px', left: '-5px', animationDelay: '1.4s', animationDuration: '3.8s' }}></span>
-                                    <span className="sparkle-dot" style={{ top: '10px', left: '12px', animationDelay: '0.2s', animationDuration: '4.0s' }}></span>
-                                </div>
-                            )}
-                            {buttonText}
-                        </a>
-                    </div>
+                <nav className="flex flex-wrap items-start gap-4 mb-10" aria-label="Contact and social links">
+                    <a
+                        href={`mailto:mikeyscimeca@gmail.com?subject=${encodeURIComponent(emailSubject)}`}
+                        className="underline hover:opacity-80"
+                        style={{ color: 'rgb(149, 156, 173)' }}
+                    >
+                        Email
+                    </a>
                     <a
                         href="https://www.linkedin.com/in/mikey-scimeca/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`bg-white text-gray-900 px-8 py-4 rounded-full font-medium border border-gray-300 hover:bg-gray-50 transition-all flex items-center gap-2 duration-500  shadow-lg hover:translate-y-[1px] hover:shadow-[0_0px_1px_rgba(0,0,0,0.2)] ${isMomentReady ? 'fade-in-up-delay-5' : 'opacity-0'}`}
-                        style={{ willChange: 'transform' }}
+                        className="underline hover:opacity-80"
+                        style={{ color: 'rgb(149, 156, 173)' }}
                     >
-                        <svg className="w-5 h-5" fill="#0A66C2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
                         LinkedIn
                     </a>
-                </div>
+                </nav>
 
-                {/* Portfolio Text with Embedded Images */}
-                <div className="relative bg mx-auto mb-20">
-                    <div className="wrap-i leading-tight text-center space-y-4">
-           
+                {/* Portfolio Section */}
+                <section className="relative bg mx-auto mb-20" aria-label="Featured portfolio projects">
+                    <h2 className="sr-only">Featured Portfolio Projects</h2>
                     
-                                <span className="fade-in-up-delay-6">From</span>
-                                <span className="fade-in-up-delay-7">Patreon</span>
-                                <div className="inline-block relative fade-in-up-delay-8" style={{ left: '-10px', zIndex: 12 }}>
-                                    <div 
-                                        className="video-thumbnail position-relative inline-block rounded-[10px] overflow-hidden shadow-xl relative video-shadow cursor-pointer hover:opacity-90 transition-opacity" 
-                                        style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(2deg)', zIndex: 12 }}
-                                        onClick={(e) => handleVideoClick('/video/patreon.mp4', e)}
-                                        onMouseEnter={handleAudioStart}
-                                        data-video="0"
-                                    >
-                                        <video
-                                            src="/video/patreon.mp4"
-                                            className="w-full h-full object-cover relative"
-                                            style={{ zIndex: 12 }}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                        />
-                                        {/* Stars inside video */}
-                                        {stars.filter(star => star.videoIndex === 0).map(star => (
-                                            <img
-                                                key={star.id}
-                                                src="/image/star-black.png"
-                                                alt=""
-                                                className="absolute pointer-events-none star-pop"
-                                                style={{
-                                                    left: star.x,
-                                                    top: star.y,
-                                                    width: '15px',
-                                                    height: '15px',
-                                                    zIndex: 10
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                    {/* Black stars around video */}
-                                    {outerStars.filter(star => star.videoIndex === 0).map(star => (
-                                        <img
-                                            key={star.id}
-                                            src="/image/star-black.png"
-                                            alt=""
-                                            className="absolute pointer-events-none star-pop"
-                                            style={{
-                                                left: star.x,
-                                                top: star.y,
-                                                width: '8px',
-                                                height: '8px',
-                                                zIndex: 10
-                                            }}
-                                        />
-                                    ))}
-                                </div>
-                          
-
-                                <span className="fade-in-up-delay-9">To</span>
-                                <span className="fade-in-up-delay-10">Twix</span>
-                                <span className="fade-in-up-delay-11">NFT</span>
-                                
-                                <div className="inline-block relative fade-in-up-delay-12" style={{ left: '-10px', zIndex: 12 }}>
-                                    <div 
-                                        className="video-thumbnail inline-block rounded-[10px] overflow-hidden relative video-shadow cursor-pointer hover:opacity-90 transition-opacity " 
-                                        style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(0deg)', zIndex: 12 }}
-                                        onClick={(e) => handleVideoClick('/video/twix.mp4', e)}
-                                        onMouseEnter={handleAudioStart}
-                                        data-video="1"
-                                    >
-                                        <video
-                                            src="/video/twix.mp4"
-                                            className="w-full h-full object-cover relative"
-                                            style={{ zIndex: 12 }}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                        />
-                                        {/* Stars inside video */}
-                                        {stars.filter(star => star.videoIndex === 1).map(star => (
-                                            <img
-                                                key={star.id}
-                                                src="/image/star-black.png"
-                                                alt=""
-                                                className="absolute pointer-events-none star-pop"
-                                                style={{
-                                                    left: star.x,
-                                                    top: star.y,
-                                                    width: '25px',
-                                                    height: '25px',
-                                                    zIndex: 10
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                    {/* Black stars around video */}
-                                    {outerStars.filter(star => star.videoIndex === 1).map(star => (
-                                        <img
-                                            key={star.id}
-                                            src="/image/star-black.png"
-                                            alt=""
-                                            className="absolute pointer-events-none star-pop"
-                                            style={{
-                                                left: star.x,
-                                                top: star.y,
-                                                width: '7px',
-                                                height: '7px',
-                                                zIndex: 10
-                                            }}
-                                        />
-                                    ))}
-                                </div>
-                             
-                            
-                                <span className="fade-in-up-delay-13">&</span>
-                                <span className="fade-in-up-delay-14">Wealth</span>
-                                <span className="fade-in-up-delay-15">Management</span>
-                                <span className="fade-in-up-delay-16">Kovitz</span>
-                                <div className="inline-block relative fade-in-up-delay-17" style={{ left: '-10px', zIndex: 12 }}>
-                                    <div 
-                                        className="video-thumbnail inline-block rounded-[10px] overflow-hidden relative video-shadow cursor-pointer hover:opacity-90 transition-opacity" 
-                                        style={{ width: 'clamp(170px, 18vw, 290px)', height: 'clamp(113px, 12vw, 193px)', transform: 'rotate(-2deg)', zIndex: 12 }}
-                                        onClick={(e) => handleVideoClick('/video/kovitz.mp4', e)}
-                                        onMouseEnter={handleAudioStart}
-                                        data-video="2"
-                                    >
-                                        <video
-                                            src="/video/kovitz.mp4"
-                                            className="w-full h-full object-cover relative"
-                                            style={{ zIndex: 12}}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                        />
-                                        {/* Stars inside video */}
-                                        {stars.filter(star => star.videoIndex === 2).map(star => (
-                                            <img
-                                                key={star.id}
-                                                src="/image/star-black.png"
-                                                alt=""
-                                                className="absolute pointer-events-none star-pop"
-                                                style={{
-                                                    left: star.x,
-                                                    top: star.y,
-                                                    width: '5px',
-                                                    height: '5px',
-                                                    zIndex: 10
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                    {/* Black stars around video */}
-                                    {outerStars.filter(star => star.videoIndex === 2).map(star => (
-                                        <img
-                                            key={star.id}
-                                            src="/image/star-black.png"
-                                            alt=""
-                                            className="absolute pointer-events-none star-pop"
-                                            style={{
-                                                left: star.x,
-                                                top: star.y,
-                                                width: '5px',
-                                                height: '5px',
-                                                zIndex: 10
-                                            }}
-                                        />
-                                    ))}
-                                </div>
-                    
-
+                    {/* Video Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <video
+                                src="/video/patreon.mp4"
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                aria-label="Preview of Patreon Halloween campaign project"
+                            />
+                        </div>
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <video
+                                src="/video/twix.mp4"
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                aria-label="Preview of Twix NFT campaign project"
+                            />
+                        </div>
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <video
+                                src="/video/kovitz.mp4"
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                aria-label="Preview of Kovitz Wealth Management website project"
+                            />
+                        </div>
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <video
+                                src="/video/flipboard.mp4"
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                aria-label="Preview of Kovitz Wealth Management website project"
+                            />
                         </div>
                     </div>
-                    <footer className="text-center fade-in-up-delay-18">
-                    <p className="text-gray-600 text-sm">
-                        Michael Scimeca. All Rights Reserved.
-                    </p>
-                </footer>
-                </div>
 
-             {/* Footer */}
-         
+                  
+                    </section>
+      </div>
+                    <footer className="my-12 text-center">
+                        <p className="text-sm" style={{ color: 'rgb(149, 156, 173)' }}>
+                        {new Date().getFullYear()} Michael Scimeca
+                        </p>
+                    </footer>
+                </div>
+            {/* End Main Content Wrapper */}
 
                 {/* Video Modal */}
                 {activeVideo && clickPosition && (
@@ -539,8 +469,11 @@ export default function Home() {
                         className={`fixed inset-0 bg-black modal-backdrop ${isClosing ? 'closing' : ''}`}
                         style={{ zIndex: 1000 }}
                         onClick={handleCloseModal}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Project details"
                     >
-                        <div 
+                        <article 
                             className={`modal-content ${isClosing ? 'closing' : ''}`}
                             onClick={(e) => e.stopPropagation()}
                             style={{
@@ -580,15 +513,15 @@ export default function Home() {
                                 
                                 {/* Project Content */}
                                 <div className="bg-white p-8">
-                                    <h3 className="text-left mb-4 font-lora text-5xl text-gray-900">
+                                    <h2 className="text-left mb-4 font-lora text-5xl" style={{ color: 'rgb(149, 156, 173)' }}>
                                         {projectContent[activeVideo]?.title}
-                                    </h3>
-                                    <p className="text-left text-gray-600 leading-relaxed">
+                                    </h2>
+                                    <p className="text-left leading-relaxed" style={{ color: 'rgb(149, 156, 173)' }}>
                                         {projectContent[activeVideo]?.description}
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     </div>
                 )}
 
