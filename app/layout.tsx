@@ -34,6 +34,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Michael Scimeca" }],
   creator: "Michael Scimeca",
+  publisher: "Michael Scimeca",
+  metadataBase: new URL('https://michaelscimeca.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -71,6 +76,7 @@ export const metadata: Metadata = {
   verification: {
     google: "G-K1EFNGT352",
   },
+  category: "Technology",
 };
 
 export default function RootLayout({
@@ -93,7 +99,11 @@ export default function RootLayout({
           gtag('config', 'G-3X3QCH0C86');
         `}
       </Script>
-      <body className={`${inter.variable} ${lora.variable} font-sans`}>{children}</body>
+      <body 
+        className={`${inter.variable} ${lora.variable} font-sans`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
