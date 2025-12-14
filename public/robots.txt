@@ -1,7 +1,0 @@
-# robots.txt for michaelscimeca.com
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://michaelscimeca.com/sitemap.xml
-

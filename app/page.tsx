@@ -61,7 +61,7 @@ export default function Home() {
 
             // Mark as loaded after first check
             setIsLoaded(true);
-            
+
             // Mark moment as ready after first check
             if (!isMomentReady) {
                 setIsMomentReady(true);
@@ -116,15 +116,15 @@ export default function Home() {
     useEffect(() => {
         const createStarsInVideos = () => {
             const videoElements = document.querySelectorAll('.video-thumbnail');
-            
+
             videoElements.forEach((video, index) => {
                 // Random position within the video thumbnail (percentage-based)
                 const x = `${Math.random() * 100}%`;
                 const y = `${Math.random() * 100}%`;
-                
+
                 const id = Date.now() + Math.random();
                 setStars(prev => [...prev, { id, x, y, videoIndex: index }]);
-                
+
                 // Remove star after animation completes
                 setTimeout(() => {
                     setStars(prev => prev.filter(star => star.id !== id));
@@ -144,13 +144,13 @@ export default function Home() {
     useEffect(() => {
         const createOuterStars = () => {
             const videoElements = document.querySelectorAll('.video-thumbnail');
-            
+
             videoElements.forEach((video, index) => {
                 // Random position around the perimeter (outside the video)
                 const side = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
                 let x, y;
-                
-                switch(side) {
+
+                switch (side) {
                     case 0: // top
                         x = `${Math.random() * 100}%`;
                         y = '-10px';
@@ -169,10 +169,10 @@ export default function Home() {
                         y = `${Math.random() * 100}%`;
                         break;
                 }
-                
+
                 const id = Date.now() + Math.random();
                 setOuterStars(prev => [...prev, { id, x, y, videoIndex: index }]);
-                
+
                 // Remove star after animation completes
                 setTimeout(() => {
                     setOuterStars(prev => prev.filter(star => star.id !== id));
@@ -220,7 +220,7 @@ export default function Home() {
             clickAudioRef.current.currentTime = 0; // Reset to start
             clickAudioRef.current.play().catch(err => console.log('Click sound failed:', err));
         }
-        
+
         const rect = event.currentTarget.getBoundingClientRect();
         setClickPosition({
             x: rect.left + rect.width / 2,
@@ -246,7 +246,7 @@ export default function Home() {
             {/* <audio ref={audioRef} loop>
                 <source src="/sound/bg-sound.mp3" type="audio/mpeg" />
             </audio> */}
-            
+
             {/* Click Sound */}
             <audio ref={clickAudioRef} preload="auto">
                 <source src="/sound/click.mp3" type="audio/mpeg" />
@@ -355,183 +355,183 @@ export default function Home() {
             />
 
             {/* Hero Section */}
-            <div className="relative z-10" style={{  maxWidth: '1440px', margin: '0 auto' }}>
-            <div className="body-content my-8 mx-6 md:my-12 md:mx-12">
-                {/* Profile Section */}
-                <header className="flex flex-col items-start mb-8">
-                    <div id="">
-                        <div className="rounded-full  bg-slate-700 overflow-hidden" style={{ width: '150px', height: '150px' }}>
-                            {imageError ? (
-                                <div className="w-full h-full flex items-center justify-center text-white text-4xl font-bold">MS</div>
-                            ) : (
-                                <Image
-                                    src="/profile.jpg"
-                                    alt="Michael Scimeca"
-                                    width={150}
-                                    height={150}
+            <div className="relative z-10" style={{ maxWidth: '1440px', margin: '0 auto' }}>
+                <div className="body-content my-8 mx-6 md:my-12 md:mx-12">
+                    {/* Profile Section */}
+                    <header className="flex flex-col items-start mb-8">
+                        <div id="">
+                            <div className="rounded-full  bg-slate-700 overflow-hidden" style={{ width: '150px', height: '150px' }}>
+                                {imageError ? (
+                                    <div className="w-full h-full flex items-center justify-center text-white text-4xl font-bold">MS</div>
+                                ) : (
+                                    <Image
+                                        src="/profile.jpg"
+                                        alt="Michael Scimeca"
+                                        width={150}
+                                        height={150}
+                                        className="w-full h-full object-cover"
+                                        onError={() => setImageError(true)}
+                                    />
+                                )}
+                            </div>
+                        </div>
+
+                    </header>
+
+                    {/* Main Heading */}
+                    <h1 className="font-regular mb-4 leading-tight" style={{ fontSize: 'clamp(26px, calc(26px + (61 - 26) * ((100vw - 360px) / (1440 - 360))), 61px)', color: 'rgb(149, 156, 173)' }}>
+                        <span>Hi, I&apos;m Mikey — Web Developer & </span><br /><span>AI Automation Specialist</span>
+                    </h1>
+                    <div className="!flex gap-4 mb-8">
+                        <p className="max-w-[70ch]" style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.1' }}>For the past 15 years, I&apos;ve had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
+                    </div>
+                    {/* CTA Buttons */}
+                    <nav className="flex flex-wrap items-start gap-4 mb-10" aria-label="Contact and social links">
+                        <a
+                            href={`mailto:mikeyscimeca@gmail.com?subject=${encodeURIComponent(emailSubject)}`}
+                            className="underline hover:opacity-80"
+                            style={{ color: 'rgb(149, 156, 173)' }}
+                        >
+                            Email
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/mikey-scimeca/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline hover:opacity-80"
+                            style={{ color: 'rgb(149, 156, 173)' }}
+                        >
+                            LinkedIn
+                        </a>
+                    </nav>
+
+                    {/* Portfolio Section */}
+                    <section className="relative bg mx-auto mb-20" aria-label="Featured portfolio projects">
+                        <h2 className="sr-only">Featured Portfolio Projects</h2>
+
+                        {/* Video Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <video
+                                    src="/video/patreon.mp4"
                                     className="w-full h-full object-cover"
-                                    onError={() => setImageError(true)}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    aria-label="Preview of Patreon Halloween campaign project"
                                 />
-                            )}
+                            </div>
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <video
+                                    src="/video/twix.mp4"
+                                    className="w-full h-full object-cover"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    aria-label="Preview of Twix NFT campaign project"
+                                />
+                            </div>
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <video
+                                    src="/video/kovitz.mp4"
+                                    className="w-full h-full object-cover"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    aria-label="Preview of Kovitz Wealth Management website project"
+                                />
+                            </div>
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <video
+                                    src="/video/flipboard.mp4"
+                                    className="w-full h-full object-cover"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    aria-label="Preview of Kovitz Wealth Management website project"
+                                />
+                            </div>
                         </div>
-                    </div>
-                   
-                </header> 
 
-                {/* Main Heading */}
-                <h1 className="font-regular mb-4 leading-tight" style={{ fontSize: 'clamp(26px, calc(26px + (61 - 26) * ((100vw - 360px) / (1440 - 360))), 61px)', color: 'rgb(149, 156, 173)' }}>
-                <div>Hi, I&apos;m Mikey — Web Developer & </div><div>AI Automation Specialist</div>
-                </h1>
-                <div className="!flex gap-4 mb-8">
-                    <p className="max-w-[70ch]"  style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.1' }}>For the past 15 years, I&apos;ve had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
-                </div>
-                {/* CTA Buttons */}
-                <nav className="flex flex-wrap items-start gap-4 mb-10" aria-label="Contact and social links">
-                    <a
-                        href={`mailto:mikeyscimeca@gmail.com?subject=${encodeURIComponent(emailSubject)}`}
-                        className="underline hover:opacity-80"
-                        style={{ color: 'rgb(149, 156, 173)' }}
-                    >
-                        Email
-                    </a>
-                    <a
-                        href="https://www.linkedin.com/in/mikey-scimeca/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline hover:opacity-80"
-                        style={{ color: 'rgb(149, 156, 173)' }}
-                    >
-                        LinkedIn
-                    </a>
-                </nav>
 
-                {/* Portfolio Section */}
-                <section className="relative bg mx-auto mb-20" aria-label="Featured portfolio projects">
-                    <h2 className="sr-only">Featured Portfolio Projects</h2>
-                    
-                    {/* Video Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <video
-                                src="/video/patreon.mp4"
-                                className="w-full h-full object-cover"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                aria-label="Preview of Patreon Halloween campaign project"
-                            />
-                        </div>
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <video
-                                src="/video/twix.mp4"
-                                className="w-full h-full object-cover"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                aria-label="Preview of Twix NFT campaign project"
-                            />
-                        </div>
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <video
-                                src="/video/kovitz.mp4"
-                                className="w-full h-full object-cover"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                aria-label="Preview of Kovitz Wealth Management website project"
-                            />
-                        </div>
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <video
-                                src="/video/flipboard.mp4"
-                                className="w-full h-full object-cover"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                aria-label="Preview of Kovitz Wealth Management website project"
-                            />
-                        </div>
-                    </div>
-
-                  
                     </section>
-      </div>
-                    <footer className="my-12 text-center">
-                        <p className="text-sm" style={{ color: 'rgb(149, 156, 173)' }}>
-                        {new Date().getFullYear()} Michael Scimeca
-                        </p>
-                    </footer>
                 </div>
+                <footer className="my-12 text-center">
+                    <p className="text-sm" style={{ color: 'rgb(149, 156, 173)' }}>
+                        {new Date().getFullYear()} Michael Scimeca
+                    </p>
+                </footer>
+            </div>
             {/* End Main Content Wrapper */}
 
-                {/* Video Modal */}
-                {activeVideo && clickPosition && (
-                    <div 
-                        className={`fixed inset-0 bg-black modal-backdrop ${isClosing ? 'closing' : ''}`}
-                        style={{ zIndex: 1000 }}
-                        onClick={handleCloseModal}
-                        role="dialog"
-                        aria-modal="true"
-                        aria-label="Project details"
+            {/* Video Modal */}
+            {activeVideo && clickPosition && (
+                <div
+                    className={`fixed inset-0 bg-black modal-backdrop ${isClosing ? 'closing' : ''}`}
+                    style={{ zIndex: 1000 }}
+                    onClick={handleCloseModal}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Project details"
+                >
+                    <article
+                        className={`modal-content ${isClosing ? 'closing' : ''}`}
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            '--start-x': `${clickPosition.x}px`,
+                            '--start-y': `${clickPosition.y}px`,
+                            '--start-width': `${clickPosition.width}px`,
+                            '--start-height': `${clickPosition.height}px`,
+                            zIndex: 1001,
+                        } as React.CSSProperties}
                     >
-                        <article 
-                            className={`modal-content ${isClosing ? 'closing' : ''}`}
-                            onClick={(e) => e.stopPropagation()}
-                            style={{
-                                '--start-x': `${clickPosition.x}px`,
-                                '--start-y': `${clickPosition.y}px`,
-                                '--start-width': `${clickPosition.width}px`,
-                                '--start-height': `${clickPosition.height}px`,
-                                zIndex: 1001,
-                            } as React.CSSProperties}
+                        {/* Close Button */}
+                        <button
+                            onClick={handleCloseModal}
+                            className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-[1002] group"
+                            aria-label="Close modal"
                         >
-                            {/* Close Button */}
-                            <button
-                                onClick={handleCloseModal}
-                                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-[1002] group"
-                                aria-label="Close modal"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Press ESC</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </div>
-                            </button>
-                    
-                            <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full bg-white flex flex-col">
-                                <div className="flex-1 bg-black">
-                                    <video
-                                        src={activeVideo}
-                                        className="w-full h-full object-cover"
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        controls
-                                    />
-                                </div>
-                                
-                                {/* Project Content */}
-                                <div className="bg-white p-8">
-                                    <h2 className="text-left mb-4 font-lora text-5xl" style={{ color: 'rgb(149, 156, 173)' }}>
-                                        {projectContent[activeVideo]?.title}
-                                    </h2>
-                                    <p className="text-left leading-relaxed" style={{ color: 'rgb(149, 156, 173)' }}>
-                                        {projectContent[activeVideo]?.description}
-                                    </p>
-                                </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Press ESC</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                             </div>
-                        </article>
-                    </div>
-                )}
+                        </button>
 
-           
-            </main>
-        );
-    }
+                        <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full bg-white flex flex-col">
+                            <div className="flex-1 bg-black">
+                                <video
+                                    src={activeVideo}
+                                    className="w-full h-full object-cover"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    controls
+                                />
+                            </div>
+
+                            {/* Project Content */}
+                            <div className="bg-white p-8">
+                                <h2 className="text-left mb-4 font-lora text-5xl" style={{ color: 'rgb(149, 156, 173)' }}>
+                                    {projectContent[activeVideo]?.title}
+                                </h2>
+                                <p className="text-left leading-relaxed" style={{ color: 'rgb(149, 156, 173)' }}>
+                                    {projectContent[activeVideo]?.description}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            )}
+
+
+        </main>
+    );
+}
 
