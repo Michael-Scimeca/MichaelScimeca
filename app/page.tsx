@@ -379,11 +379,11 @@ export default function Home() {
                     </header>
 
                     {/* Main Heading */}
-                    <h1 className="font-regular mb-4 leading-tight" style={{ fontSize: 'clamp(26px, calc(26px + (61 - 26) * ((100vw - 360px) / (1440 - 360))), 61px)', color: 'rgb(149, 156, 173)' }}>
+                    <h1 className="font-regular mb-4 leading-tight" style={{ fontSize: 'clamp(26px, calc(26px + (61 - 26) * ((100vw - 360px) / (1440 - 360))), 61px)' }}>
                         <span>Hi, I&apos;m Mikey — Web Developer & </span><br /><span>AI Automation Specialist</span>
                     </h1>
                     <div className="!flex gap-4 mb-8">
-                        <p className="max-w-[70ch]" style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.1' }}>For the past 15 years, I&apos;ve had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
+                        <p className="max-w-[70ch]" style={{ fontSize: 'clamp(21px, calc(21px + (43 - 21) * ((100vw - 360px) / (1440 - 360))), 43px)', color: 'rgb(149, 156, 173)', lineHeight: '1.4' }}>For the past 15 years, I&apos;ve had the pleasure of working with exceptional creatives, crafting beautiful, high-performing digital products for major brands—and in recent years, integrating AI automation to create even more seamless and intelligent experiences.</p>
                     </div>
                     {/* CTA Buttons */}
                     <nav className="flex flex-wrap items-start gap-4 mb-10" aria-label="Contact and social links">
@@ -406,7 +406,7 @@ export default function Home() {
                     </nav>
 
                     {/* Portfolio Section */}
-                    <section className="relative bg mx-auto mb-20" aria-label="Featured portfolio projects">
+                    <section className="relative bg mx-auto" aria-label="Featured portfolio projects">
                         <h2 className="sr-only">Featured Portfolio Projects</h2>
 
                         {/* Video Grid */}

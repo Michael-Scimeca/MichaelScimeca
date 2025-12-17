@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
+import SmoothScroll from "./components/SmoothScroll";
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-});
 
 const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-lora",
+});
+
+const fixel = localFont({
+  src: "../public/fonts/FixelVariable.ttf",
+  variable: "--font-fixel",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -96,12 +99,13 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-3X3QCH0C86');
+          gtag('config', 'G-K1EFNGT352');
         `}
       </Script>
-      <body 
-        className={`${inter.variable} ${lora.variable} font-sans`}
+      <body
+        className={`${lora.variable} ${fixel.variable} font-sans`}
       >
+        <SmoothScroll />
         {children}
       </body>
     </html>
